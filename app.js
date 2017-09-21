@@ -12,9 +12,12 @@ var mongoose = require('mongoose');
 mongoose.connect ("mongodb://localhost/residentsdb");
 
 seedDB();
+
+//import all routes
 var index = require('./routes/index');
 var users = require('./routes/users');
 var residents = require('./routes/residents');
+var show = require('./routes/show');
 
 var app = express();
 
@@ -30,9 +33,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//use these routes...
 app.use('/', index);
 app.use('/users', users);
 app.use('/residents', residents);
+app.use('/:id', show);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
