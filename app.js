@@ -4,7 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var  seedDB = require('./seedfile');
+// 1: add database library
+var mongoose = require('mongoose');
 
+// 2: connect to the database
+mongoose.connect ("mongodb://localhost/residentsdb");
+
+seedDB();
 var index = require('./routes/index');
 var users = require('./routes/users');
 var residents = require('./routes/residents');
