@@ -17,7 +17,7 @@ body {
 /*Panels*/
 
 .panel {
-    border: 1px solid #f4511e; 
+    border: 1px solid #1E25FF; 
     border-radius:60;
     transition: box-shadow 0.5s;
 }
@@ -26,9 +26,10 @@ body {
     background-color: #fff !important;
     color: #f4511e;
 }
-.panel-heading {
+.panel-heading, .panel-heading span {
+	text-transform: uppercase;
     color: #fff !important;
-    background-color: #f4511e !important;
+    background-color:#1E9BFE !important;
     padding: 25px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 0px;
@@ -41,6 +42,6 @@ body {
 }
 .panel-footer .btn {
     margin: 15px 0;
-    background-color: #f4511e;
+    background-color: #1E9BFE;
     color: #fff;
 }

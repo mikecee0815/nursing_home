@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 //var  seedDB = require('./seedfile');
+//var seeder = require('resident-seedfile');
 
 // 1: add database library
 var mongoose = require('mongoose');
@@ -71,6 +72,12 @@ app.get('/residents/:id', function(req, res) {
 		// res.json(resident);
 		res.render('show',{resident:resident});
 	});
+});
+
+// NEW  displays the form to add a new resident
+app.get('/new', function(req,res){
+	//res.render('new');
+	res.send('test!!!');
 });
 
 
