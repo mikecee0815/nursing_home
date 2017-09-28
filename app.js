@@ -68,10 +68,12 @@ app.get('/residents/:id', function(req, res) {
 		}
 
 		// res.send("success");
-		res.json(resident);
-		//res.render('show',{result:resident});
+		// res.json(resident);
+		res.render('show',{resident:resident});
 	});
 });
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
