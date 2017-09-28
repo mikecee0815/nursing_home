@@ -4,26 +4,33 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var  seedDB = require('./seedfile');
+//var  seedDB = require('./seedfile');
+
 // 1: add database library
 var mongoose = require('mongoose');
 
-// 2: connect to the database
-mongoose.connect ("mongodb://localhost/residentsdb");
+var Resident = require('./models/resident');
+mongoose.connect ("mongodb://localhost/residents");
 
-seedDB();
+
+//seedDB();
+
 
 //import all routes
-var index = require('./routes/index');
-var users = require('./routes/users');
-var residents = require('./routes/residents');
-var show = require('./routes/show');
+//var index = require('./routes/index');
+//var users = require('./routes/users');
+// var residents = require('./routes/residents');
+//var show = require('./routes/show');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+// 2: connect to the database
+
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -32,12 +39,39 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.listen(3002,function(){
+// 	console.log(' server ready...');
+});
 
 //use these routes...
-app.use('/', index);
-app.use('/users', users);
-app.use('/residents', residents);
-app.use('/:id', show);
+//app.use('/', index);
+//app.use('/users', users);
+// app.use('/residents', residents);
+//app.use('residents/:id', show);
+
+//  ROUTES
+app.get('/', function(req, res) {
+	Resident.find({},function(err,residents,next) {
+		if (err) {
+			console.log(err);	
+		}
+		// res.send("success");
+		// res.json(residents);
+		res.render('index',{results:residents});
+	});
+});
+
+app.get('/residents/:id', function(req, res) {
+	Resident.findById(req.params.id,function(err,resident,next) {	
+		if (err) {
+			console.log(err);	
+		}
+
+		// res.send("success");
+		res.json(resident);
+		//res.render('show',{result:resident});
+	});
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

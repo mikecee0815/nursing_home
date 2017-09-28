@@ -5,7 +5,8 @@ var mongoose = require('mongoose');
 var residentSchema = mongoose.Schema({
 	name: String,
 	age: Number,
-	gender:String
+	gender:String,
+	imageUrl:String
 });
 
 // 2: Make a resident model and glue it to the schema
