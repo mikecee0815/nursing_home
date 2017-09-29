@@ -76,8 +76,16 @@ app.get('/residents/:id', function(req, res) {
 
 // NEW  displays the form to add a new resident
 app.get('/new', function(req,res){
-	//res.render('new');
-	res.send('test!!!');
+	res.render('new');
+	// res.send('test!!!');
+});
+
+// EDIT  displays the form to edit residents data
+app.get('/residents/:id/edit', function(req,res){
+
+		//res.render('edit');
+		res.send('edit test!!!');	
+	
 });
 
 

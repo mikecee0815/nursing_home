@@ -1,0 +1,25 @@
+<% include ./partials/header%>
+	
+	<h1>Edit form</h1>
+	<div class = "container-fluid form-container">
+		<form action = '/residents' method = 'PUT'>
+		  <div class="form-group">
+		    <label for="ResidentName">Name</label>
+		    <input type="text" class="form-control"  name ="name" placeholder="Name">
+		  </div>
+		  <div class="form-group">
+		    <label for="age">Age</label>
+		    <input type="text" class="form-control" name = "age" placeholder="Age">
+		  </div>
+
+		  <div class="form-group">
+		    <label for="gender">Gender</label>
+		    <input type="text" class="form-control" name = "gender" placeholder="gender">
+		  </div>
+		  <button type = "submit "class = "btn btn-success btn-lg">Update</button>
+		</form>
+	</div>
+
+
+<% include ./partials/footer%>
+

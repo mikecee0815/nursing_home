@@ -45,3 +45,10 @@ body {
     background-color: #1E9BFE;
     color: #fff;
 }
+
+/*New form*/
+
+.form-container{
+    width: 500px;
+}
+
