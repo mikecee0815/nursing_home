@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 //var  seedDB = require('./seedfile');
 //var seeder = require('resident-seedfile');
 
@@ -39,6 +40,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, 'public')));
 app.listen(3002,function(){
 // 	console.log(' server ready...');
@@ -80,15 +82,35 @@ app.get('/new', function(req,res){
 	// res.send('test!!!');
 });
 
-// EDIT  displays the form to edit residents data
-app.get('/residents/:id/edit', function(req,res){
-
-		//res.render('edit');
-		res.send('edit test!!!');	
+// EDIT 
+app.get('/residents/:id/edit', function(req, res) {
 	
+	Resident.findById(req.params.id,function(err,resident,next) {	
+		if (err) {
+			console.log(err);	
+		}
+
+		// res.send("success");
+		// res.json(resident);
+		res.render('edit',{resident:resident});
+	});
 });
 
-
+// UPDATE
+app.put('/residents/:id', function(req,res){
+	
+	var id = req.params.id;
+	var body = req.body;
+	
+	Resident.findByIdAndUpdate( id, body,function(err,updated_data){
+		if (err) {
+			console.log(err);
+		}
+		res.redirect('/residents/' + id);
+		// res.json(req.body);
+	})
+	
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

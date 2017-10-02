@@ -13,6 +13,7 @@
     "ejs": "^2.5.7",
     "express": "~4.15.2",
     "jade": "~1.11.0",
+    "method-override": "^2.3.10",
     "mongoose": "^4.11.12",
     "mongoose-seed": "^0.3.2",
     "morgan": "~1.8.1",
