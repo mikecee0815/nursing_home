@@ -1,16 +1,15 @@
 
 <% include ./partials/header %>
-<div class = "container">
+
 	<div class = "jumbotron">
 		<div class = "container ">
-			<h1 class = ""> Residents Admission page</h1>
-			<button type="button" class="btn btn-outline-primary btn-large">Add new resident</button>
+			<h1 class = ""> Resident Admissions page</h1>
+			<a href = "/resident" class="btn btn-info btn-large">Add new resident</a>
 		</div>
 	</div>
-	
-	<div class = "container center-block">
+	<div class ="center-block">
 		<section id = "residents">
-			<div class = "row">
+			<div class = "row" style = "display:flex; flex-wrap:wrap">
 				<% results.forEach(function(result)  { %>		
 				<div class = "col-md-2 text-center">
 					<img src="<%= result.imageUrl %>" alt="user icon" class = "img-responsive center-block">
@@ -23,6 +22,6 @@
 		</section>	
 	</div>
 	<% include ./partials/footer %>
-</div>
+
 
 

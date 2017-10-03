@@ -64,6 +64,11 @@ app.get('/', function(req, res) {
 	});
 });
 
+app.get('/resident', function(req, res) {
+	// res.send('te amo!!!!')
+	res.render('new');
+});
+
 app.get('/residents/:id', function(req, res) {
 	Resident.findById(req.params.id,function(err,resident,next) {	
 		if (err) {
@@ -74,12 +79,6 @@ app.get('/residents/:id', function(req, res) {
 		// res.json(resident);
 		res.render('show',{resident:resident});
 	});
-});
-
-// NEW  displays the form to add a new resident
-app.get('/new', function(req,res){
-	res.render('new');
-	// res.send('test!!!');
 });
 
 // EDIT 
@@ -110,6 +109,25 @@ app.put('/residents/:id', function(req,res){
 		// res.json(req.body);
 	})
 	
+});
+
+// POST  
+app.post('/resident', function(req,res){	
+	
+	var data = {
+		name:        req.body.name,
+		age:           req.body.age,
+		gender:      req.body.gender,
+		imageUrl:       req.body.imageUrl
+	}
+
+	Resident.create(data,function(err , resident){
+		if (err) {
+			console.log(err);
+		}
+		res.redirect('/');
+		// res.send('test!!!');
+	});	
 });
 
 // catch 404 and forward to error handler
