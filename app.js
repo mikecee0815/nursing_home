@@ -118,7 +118,7 @@ app.post('/resident', function(req,res){
 		name:        req.body.name,
 		age:           req.body.age,
 		gender:      req.body.gender,
-		imageUrl:       req.body.imageUrl
+		imageUrl:   req.body.imageUrl
 	}
 
 	Resident.create(data,function(err , resident){
@@ -128,6 +128,17 @@ app.post('/resident', function(req,res){
 		res.redirect('/');
 		// res.send('test!!!');
 	});	
+});
+
+// delete route
+app.delete('/residents/:id', function(req,res){
+	var id  = req.params.id;
+	Resident.findByIdAndRemove(id,function(err){
+		if (err) {
+			console.log(err);
+		}
+		res.redirect('/');
+	});
 });
 
 // catch 404 and forward to error handler

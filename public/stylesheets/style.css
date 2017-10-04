@@ -14,6 +14,10 @@ body {
 	/*border:1px solid blue; */
 }
 
+.col-md-2 {
+    margin-bottom: 15px;
+}
+
 /*Panels*/
 
 .panel {
@@ -39,6 +43,9 @@ body {
 }
 .panel-footer {
     background-color: #fff !important;
+}
+.panel form {
+    display: inline;
 }
 .panel-footer .btn {
     margin: 15px 0;
