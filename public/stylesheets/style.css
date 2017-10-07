@@ -3,6 +3,11 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.hero{
+    width: 75%;
+    margin:0 auto;
+}
+
 
 .details .details-heading__pb{
 	

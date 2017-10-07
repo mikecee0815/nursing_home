@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var expressSanitizer = require('express-sanitizer');
 var methodOverride = require('method-override');
 //var  seedDB = require('./seedfile');
 //var seeder = require('resident-seedfile');
@@ -39,6 +40,9 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use (expressSanitizer());
+
+
 app.use(cookieParser());
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -113,15 +117,18 @@ app.put('/residents/:id', function(req,res){
 
 // POST  
 app.post('/resident', function(req,res){	
+
+	req.body.sanitized = req.sanitize(req.body.name);
 	
 	var data = {
-		name:        req.body.name,
+		name:        req.body.sanitized,
 		age:           req.body.age,
 		gender:      req.body.gender,
 		imageUrl:   req.body.imageUrl
 	}
 
 	Resident.create(data,function(err , resident){
+
 		if (err) {
 			console.log(err);
 		}
